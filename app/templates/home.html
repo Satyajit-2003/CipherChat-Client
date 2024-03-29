@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat App</title>
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js" integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/chat.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script>
+        username = "{{ username[1] }}"
+    </script>
+</head>
+<body>
+    <div class="chat">
+        <div class="users">
+            <div class="chat-header">
+                <h5>{{ username[0].capitalize() }}</h5>
+                <a href="/logout" class="float-right"><i class="fas fa-power-off logout"></i></a>                
+            </div>
+            <div class="user-list">
+                <!-- Users will be populated here -->
+            </div>
+        </div>
+        <div class="chat-screen">
+            {% if username[1] != '' %}
+                <div class="chat-header">
+                    <h5 class="chatting-with">{{ username[1].capitalize() }}</h5>
+                </div>
+                
+                <div class="messages">
+                    <!-- Messages will be populated here -->
+                </div>
+                <div class="message-input">
+                    <input type="text" id="messageInput" class="form-control">
+                    <button id="sendButton" class="btn btn-primary">Send</button>
+                </div>
+            {% else %}
+                <div class="background"></div>
+                    <!-- <img src="https://img.freepik.com/free-vector/diwali-festival-patterned-background_53876-118874.jpg"> -->
+                    <h1 class="text-center">Welcome to Chat App</h1>
+                    <p class="text-center">Select a user to start chatting</p>
+                </div>
+            {% endif %}            
+        </div>
+    </div>
+</body>
+</html>

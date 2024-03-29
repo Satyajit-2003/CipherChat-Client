@@ -1,0 +1,38 @@
+<html>
+<head>
+    <title>CipherChat</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="loginDiv" id="loginDiv">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{category}}">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">&times;</a>
+                    {{message}}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <h1>Login</h1>
+        <form action="#" method="post">
+            <div class="inputField">
+                <input type="text" id="username" name="username" required aria-invalid="false" />
+                <label>Username</label>
+            </div>
+            <div class="inputField">
+                <input type="password" id="password" name="password" required aria-invalid="false"/>
+                <label>Password</label>
+            </div>
+                <p style="text-align: center;">Don't have an account? <a href="/register">Register</a></p>
+            <button id="login" class="login">Login</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
