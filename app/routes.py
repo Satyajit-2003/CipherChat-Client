@@ -62,10 +62,9 @@ def login():
                 cache.set('token', response.json()['token'])
                 cache.set('username', username)
                 resp = requests.request('POST', app.config['SERVER_API']+'/get_messages', data={'token': response.json()['token']})
-                print(resp)
                 if resp.status_code == 200:
                     for message in resp.json():
-                        decrypt(message['message'], username)
+                        message['message'] = decrypt(message['message'], username)
                         print(message)
                         models.add_message(message['sender'], message['message'], 0, message['timestamp'])
                 return redirect(url_for('home'))           
