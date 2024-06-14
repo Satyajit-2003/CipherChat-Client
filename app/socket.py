@@ -13,8 +13,6 @@ def on_connect():
 
 @server_conn.on('message')
 def on_message(data):
-    # TODO: Store the message in the database
-    # and pass it to the client
     print("From Server", data)
     data['message'] = decrypt(data['message'], cache.get('username'))
     with app.app_context():
@@ -23,8 +21,6 @@ def on_message(data):
 
 @client_conn.on('message')
 def on_message(data):
-    # TODO: Store the message in the database
-    # and pass it to the server
     print(data)
     with app.app_context():
         add_message(data['username'], data['message'], True, int(time.time()))

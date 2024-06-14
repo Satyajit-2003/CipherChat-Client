@@ -5,11 +5,6 @@ from Crypto.PublicKey import RSA
 # This file will be responsible for storing retrieving public and private keys
 
 def generate_keys(username):
-    # TODO: Generate a pair of public and private keys, 
-    # store them in a file and return the public key path
-    # Name the file as username_public.pem and username_private.pem
-    # Store the keys in the folder app.config['KEYS_DIR']
-    # Return 1 if keys are generated successfully, 0 if keys already exist
     if get_public_key(username):
         return 0
     keys = RSA.generate(2048)
